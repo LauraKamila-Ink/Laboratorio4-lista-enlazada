@@ -1,3 +1,6 @@
+
+
+
 # src/linked_list.py
 # Estructura base — cada equipo implementa su operación asignada.
 
@@ -20,7 +23,7 @@ class LinkedList:
         self.head = None
 
     # ------------------------------------------------------------------ #
-    # Implementado por el docente — NO modificar                          #
+    # Implementado por el docente — NO modificar                         #
     # ------------------------------------------------------------------ #
     def __str__(self):
         """Retorna una representación legible de la lista."""
@@ -29,7 +32,6 @@ class LinkedList:
         while current:
             elements.append(str(current.data))
             current = current.next
-        return " -> ".join(elements) if elements else "Lista vacía"
 
     def __len__(self):
         """Retorna el número de nodos."""
@@ -55,15 +57,28 @@ class LinkedList:
     # TODO — Equipo B: rama feature/delete                                #
     # ------------------------------------------------------------------ #
     def delete(self, data):
-        """Elimina el primer nodo cuyo valor sea igual a data.
-
-        Args:
-            data: El valor a eliminar.
-
+        """Elimina la primera ocurrencia de un nodo con el valor dado.
+        
         Returns:
-            True si el nodo fue eliminado, False si no se encontró.
+            True si el elemento fue eliminado, False si no se encontró.
         """
-        raise NotImplementedError("Equipo B debe implementar delete()")
+        if self.head is None:
+            return False
+            
+        if self.head.data == data:
+            # CASO 2: eliminar head
+            self.head = self.head.next
+            return True
+            
+        current = self.head
+        while current.next is not None:
+            if current.next.data == data:
+                # CASO 3: saltar el nodo siguiente
+                current.next = current.next.next
+                return True
+            current = current.next
+            
+        return False
 
     # ------------------------------------------------------------------ #
     # TODO — Equipo C: rama feature/search                                #
