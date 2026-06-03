@@ -1,13 +1,7 @@
-
-
-
 # src/linked_list.py
-# Estructura base — cada equipo implementa su operación asignada.
-
 
 class Node:
     """Nodo de la lista enlazada."""
-
     def __init__(self, data):
         self.data = data
         self.next = None
@@ -18,13 +12,9 @@ class Node:
 
 class LinkedList:
     """Lista enlazada simple."""
-
     def __init__(self):
         self.head = None
 
-    # ------------------------------------------------------------------ #
-    # Implementado por el docente — NO modificar                         #
-    # ------------------------------------------------------------------ #
     def __str__(self):
         """Retorna una representación legible de la lista."""
         elements = []
@@ -32,6 +22,7 @@ class LinkedList:
         while current:
             elements.append(str(current.data))
             current = current.next
+        return " -> ".join(elements) if elements else "Lista vacía"
 
     def __len__(self):
         """Retorna el número de nodos."""
@@ -42,54 +33,26 @@ class LinkedList:
             current = current.next
         return count
 
-    # ------------------------------------------------------------------ #
-    # TODO — Equipo A: rama feature/append                                #
-    # ------------------------------------------------------------------ #
     def append(self, data):
-        """Inserta un nuevo nodo al final de la lista.
-
-        Args:
-            data: El valor a insertar.
-        """
         raise NotImplementedError("Equipo A debe implementar append()")
 
-    # ------------------------------------------------------------------ #
-    # TODO — Equipo B: rama feature/delete                                #
-    # ------------------------------------------------------------------ #
     def delete(self, data):
-        """Elimina la primera ocurrencia de un nodo con el valor dado.
-        
-        Returns:
-            True si el elemento fue eliminado, False si no se encontró.
-        """
+        """Elimina la primera ocurrencia de un nodo con el valor dado."""
         if self.head is None:
             return False
-            
+        
         if self.head.data == data:
-            # CASO 2: eliminar head
             self.head = self.head.next
             return True
             
         current = self.head
         while current.next is not None:
             if current.next.data == data:
-                # CASO 3: saltar el nodo siguiente
                 current.next = current.next.next
                 return True
             current = current.next
             
         return False
 
-    # ------------------------------------------------------------------ #
-    # TODO — Equipo C: rama feature/search                                #
-    # ------------------------------------------------------------------ #
     def search(self, data):
-        """Busca un valor en la lista.
-
-        Args:
-            data: El valor a buscar.
-
-        Returns:
-            El nodo que contiene data, o None si no existe.
-        """
         raise NotImplementedError("Equipo C debe implementar search()")
