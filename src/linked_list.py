@@ -55,4 +55,25 @@ class LinkedList:
         return False
 
     def search(self, data):
-        raise NotImplementedError("Equipo C debe implementar search()")
+        """Busca un valor en la lista.
+
+        Args:
+            data: El valor a buscar.
+
+        Returns:
+            El nodo que contiene data, o None si no existe.
+        """
+        current = self.head
+
+        while current is not None:
+            if current.data == data:
+                return current
+
+            current = current.next
+
+        return None
+  
+    
+    
+
+
