@@ -34,7 +34,13 @@ class LinkedList:
         return count
 
     def append(self, data):
-        raise NotImplementedError("Equipo A debe implementar append()")
+        if self.head is None:
+            self.head = Node(data)
+        else:
+            current = self.head
+            while current.next is not None:
+                current = current.next
+            current.next = Node(data)
 
     def delete(self, data):
         """Elimina la primera ocurrencia de un nodo con el valor dado."""
